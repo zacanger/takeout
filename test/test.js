@@ -178,7 +178,7 @@ test('"takeout" command', function(t) {
 
   cmd([fixtureDir, '--no-index'])
     .on('close', function(code) {
-      t.notEqual(code, 1, 'should fail when it cannot read the file.');
+      t.notEqual(code, 0, 'should fail when it cannot read the file.');
       t.ok(
         /ENOTFOUND/.test(err),
         'should disable `directoryIndex` option using --no-index flag.'
