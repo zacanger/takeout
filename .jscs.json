@@ -1,0 +1,5 @@
+{
+  "preset": "google",
+  "maximumLineLength": 110,
+  "excludeFiles": ["{coverage,node_modules}/**"]
+}
