@@ -4,12 +4,9 @@
 */
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-
 var got = require('got');
-var isFile = require('is-file');
 var isHttpOrHttps = require('is-http');
+var readFileDirectoryIndexFallback = require('readfile-directory-index-fallback');
 
 module.exports = function takeout(loc, options, cb) {
   if (typeof cb !== 'function') {
@@ -23,41 +20,21 @@ module.exports = function takeout(loc, options, cb) {
     options.encoding = null;
   }
 
-  if (options.directoryIndex === undefined) {
-    options.directoryIndex = true;
-  }
-
   if (typeof cb !== 'function') {
-    throw new TypeError('Expecting a callback function as the last argument.');
+    throw new TypeError('Expecting a callback function as a last argument.');
   }
 
-  if (!isHttpOrHttps(loc)) {
-    if (fs.existsSync(loc)) {
-      if (fs.statSync(loc).isFile()) {
-        fs.readFile(loc, options, cb);
-        return;
-      }
-
-      if (options.directoryIndex) {
-        var directoryIndex;
-        if (options.directoryIndex === true) {
-          directoryIndex = 'index.html';
-        } else {
-          directoryIndex = options.directoryIndex;
-        }
-
-        directoryIndex = path.join(loc, directoryIndex);
-
-        if (isFile.sync(directoryIndex)) {
-          fs.readFile(directoryIndex, options, cb);
-          return;
-        }
-      }
-    }
-
-    got('http://' + loc, options, cb);
+  if (isHttpOrHttps(loc)) {
+    got(loc, options, cb);
     return;
   }
 
-  got(loc, options, cb);
+  readFileDirectoryIndexFallback(loc, options, function(err, buf) {
+    if (err) {
+      got('http://' + loc, options, cb);
+      return;
+    }
+
+    cb(err, buf);
+  });
 };

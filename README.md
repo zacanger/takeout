@@ -50,7 +50,7 @@ var takeout = require('takeout');
 ### takeout(*location*,[ *options*,] *callback*)
 
 *location*: `String` (local file path or URL)  
-*filePath*: `Object`  
+*options*: `Object`  
 *callback*: `Function`
 
 If the *location* is a local file path, it reads the file with [fs.readFile](http://nodejs.org/api/fs.html#fs_fs_readfile_filename_options_callback). If the *locatiandon* is a URL, it makes a GET request to the URL and grabs its response, using [got](https://github.com/sindresorhus/got). 
@@ -81,7 +81,7 @@ Directly passed to [fs.readFile](http://nodejs.org/api/fs.html#fs_fs_readfile_fi
 ##### options.directoryIndex
 
 Type: `Boolean` or `String` of filename  
-Default: `true`
+Default: `index.html`
 
 When the path indicates a local directory, it reads `index.html` or a file with the specified filename immediately under the directory.
 
