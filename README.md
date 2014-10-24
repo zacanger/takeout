@@ -11,7 +11,7 @@ A [Node][node] module to get the file contents, seamlessly available for both lo
 ```javascript
 var takeout = require('takeout');
 
-// Reaging a local file
+// Reading a local file
 takeout('path/to/local/file', {encoding: 'utf8'}, function(err, body) {
   if (err) {
     throw err;
@@ -112,7 +112,7 @@ takeout('dist', {directoryIndex: false}, function(err) {
 
 *error*: `Error` if it fails to get the contents, otherwise `null`  
 *body*: `Buffer` or `String` (according to [`options.encoding`](#optionsencoding))  
-*response*: `Object` ([response object](http://nodejs.org/api/http.html#http_http_incomingmessage)) if the content is got via HTTP/HTTPS, otherwise `undefined`
+*response*: `Object` ([response object](http://nodejs.org/api/http.html#http_http_incomingmessage)) if the content is got via HTTP(S), otherwise `undefined`
 
 ## CLI
 
