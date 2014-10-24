@@ -15,7 +15,7 @@ var pkg = require('../package.json');
 var fixtureDir = 'test/fixture';
 
 test('takeout()', function(t) {
-  t.plan(17);
+  t.plan(18);
 
   takeout(path.join(fixtureDir, 'fixture.jpg'), function(err, buf) {
     t.error(err, 'should read a local file.');
@@ -81,6 +81,13 @@ test('takeout()', function(t) {
       err.code, 'ENOTFOUND',
       'should pass an error to the callback ' +
       'when the directory exists but `directoryIndex` option is disabled.'
+    );
+  });
+
+  takeout('http://n.ot.fo/un.d', function(err) {
+    t.equal(
+       err.code, 'ENOTFOUND',
+      'should pass an error to the callback when the URL doesn\'t exist.'
     );
   });
 
