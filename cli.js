@@ -12,6 +12,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     h: 'help',
     v: 'version'
   },
+  string: ['_', 'encoding', 'index', 'out'],
   boolean: ['help', 'version']
 });
 
@@ -59,8 +60,8 @@ if (argv.version) {
     }
 
     if (argv.out) {
-      var fs = require('fs-extra');
-      fs.outputFileSync(argv.out, body);
+      var outputFileSync = require('output-file-sync');
+      outputFileSync(argv.out, body);
     } else {
       process.stdout.write(body);
     }
