@@ -55,5 +55,10 @@
     "rimraf": "^2.2.8",
     "tap-spec": "^1.0.1",
     "tape": "^3.0.3"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": 110,
+    "excludeFiles": ["{coverage,node_modules}/**"]
   }
 }
