@@ -5,7 +5,6 @@
 'use strict';
 
 var got = require('got');
-var isHttpOrHttps = require('is-http');
 var readFileDirectoryIndexFallback = require('readfile-directory-index-fallback');
 
 module.exports = function takeout(loc, options, cb) {
@@ -24,7 +23,7 @@ module.exports = function takeout(loc, options, cb) {
     throw new TypeError('Expecting a callback function as a last argument.');
   }
 
-  if (isHttpOrHttps(loc)) {
+  if (/^https?/.test(loc)) {
     got(loc, options, cb);
     return;
   }
