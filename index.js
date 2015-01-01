@@ -7,6 +7,14 @@
 var got = require('got');
 var readFileDirectoryIndexFallback = require('readfile-directory-index-fallback');
 
+function get(url, options, cb) {
+  if (options.encoding === undefined) {
+    options.encoding = null;
+  }
+
+  got(url, options, cb);
+}
+
 module.exports = function takeout(loc, options, cb) {
   if (typeof cb !== 'function') {
     cb = options;
@@ -15,25 +23,24 @@ module.exports = function takeout(loc, options, cb) {
     options = {};
   }
 
-  if (options.encoding === undefined) {
-    options.encoding = null;
-  }
-
   if (typeof cb !== 'function') {
-    throw new TypeError('Expecting a callback function as a last argument.');
+    throw new TypeError(
+      cb +
+      ' is not a function. The last argument to takeout must be a function.'
+    );
   }
 
-  if (/^https?/.test(loc)) {
-    got(loc, options, cb);
+  if (typeof loc !== 'string' || /^https?/.test(loc)) {
+    get(loc, options, cb);
     return;
   }
 
   readFileDirectoryIndexFallback(loc, options, function(err, buf) {
     if (err) {
-      got('http://' + loc, options, cb);
+      get('http://' + loc, options, cb);
       return;
     }
 
-    cb(err, buf);
+    cb(null, buf);
   });
 };
