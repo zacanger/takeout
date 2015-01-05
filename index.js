@@ -30,14 +30,14 @@ module.exports = function takeout(loc, options, cb) {
     );
   }
 
-  if (typeof loc !== 'string' || /^https?/.test(loc)) {
+  if (/^https?/.test(loc)) {
     get(loc, options, cb);
     return;
   }
 
   readFileDirectoryIndexFallback(loc, options, function(err, buf) {
     if (err) {
-      get('http://' + loc, options, cb);
+      get(loc, options, cb);
       return;
     }
 

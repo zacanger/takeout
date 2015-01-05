@@ -16,24 +16,33 @@ test('takeout()', function(t) {
   t.plan(18);
 
   takeout(path.join(fixtureDir, 'fixture.jpg'), function(err, buf) {
-    t.error(err, 'should read a local file.');
+    t.strictEqual(
+      err,
+      null,
+      'should read a local file.'
+    );
     t.ok(Buffer.isBuffer(buf), 'should pass a buffer of a file to the callback.');
   });
 
   takeout(fixtureDir, {encoding: 'utf8'}, function(err, body) {
-    t.error(err, 'should read index.html of a local directory.');
+    t.strictEqual(
+      err,
+      null,
+      'should read index.html of a local directory.'
+    );
     t.equal(body, 'foo\n', 'should pass a content of a local file to the callback.');
   });
 
   takeout(fixtureDir, {directoryIndex: 'fixture.html'}, function(err) {
-    t.error(
+    t.strictEqual(
       err,
+      null,
       'should read the directory index file of a local directory, using `directoryIndex` option.'
     );
   });
 
   takeout('http://www.example.org/', undefined, function(err, buf, res) {
-    t.error(err, 'should get a response of HTTP.');
+    t.strictEqual(err, null, 'should get a response of HTTP.');
     t.ok(Buffer.isBuffer(buf), 'should pass a buffer of a HTTP response to the callback.');
     t.equal(res.statusCode, 200, 'should pass a server response to the callback.');
   });
@@ -42,8 +51,12 @@ test('takeout()', function(t) {
     t.error(err, 'should get a response of HTTPS.');
   });
 
-  takeout('nodeschool.io', {encoding: 'utf8'}, function(err, body) {
-    t.error(err, 'should get a response of HTTP even if the URL doesn\'t have protocol.');
+  takeout('cssnext.github.io', {encoding: 'utf8'}, function(err, body) {
+    t.strictEqual(
+      err,
+      null,
+      'should get a response of HTTP even if the URL doesn\'t have protocol.'
+    );
     t.equal(typeof body, 'string', 'should pass options to the `got` module.');
   });
 
