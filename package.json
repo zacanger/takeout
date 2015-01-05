@@ -43,8 +43,8 @@
     "chalk": "^0.5.1",
     "got": "^2.3.0",
     "minimist": "^1.1.0",
-    "output-file-sync": "^1.0.0",
-    "readfile-directory-index-fallback": "^1.0.0"
+    "output-file-sync": "^1.1.0",
+    "readfile-directory-index-fallback": "^1.2.0"
   },
   "devDependencies": {
     "eslint": "^0.11.0",
