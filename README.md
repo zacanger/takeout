@@ -1,10 +1,11 @@
 # takeout
 
+[![NPM version](https://img.shields.io/npm/v/takeout.svg?style=flat)](https://www.npmjs.com/package/takeout)
 [![Build Status](https://travis-ci.org/shinnn/takeout.svg?branch=master)](https://travis-ci.org/shinnn/takeout)
 [![Build status](https://ci.appveyor.com/api/projects/status/jcn6afxqfy27y69r?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/takeout)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/takeout.svg?style=flat)](https://coveralls.io/r/shinnn/takeout)
-[![Dependency Status](https://david-dm.org/shinnn/takeout.svg)](https://david-dm.org/shinnn/takeout)
-[![devDependency Status](https://david-dm.org/shinnn/takeout/dev-status.svg)](https://david-dm.org/shinnn/takeout#info=devDependencies)
+[![Dependency Status](https://img.shields.io/david/shinnn/takeout.svg?style=flat&label=deps)](https://david-dm.org/shinnn/takeout)
+[![devDependency Status](https://img.shields.io/david/dev/shinnn/takeout.svg?style=flat&label=devDeps)](https://david-dm.org/shinnn/takeout#info=devDependencies)
 
 A [Node] module to get the file contents, seamlessly available for both local file system and HTTP(S)
 
@@ -32,8 +33,6 @@ takeout('http://nodejs.org', {encoding: 'utf8'}, function(err, body, res) {
 ```
 
 ## Installation
-
-[![NPM version](https://img.shields.io/npm/v/takeout.svg?style=flat)](https://www.npmjs.com/package/takeout)
 
 [Use npm](https://docs.npmjs.com/cli/install).
 
@@ -142,7 +141,7 @@ You can do almost the same thing with [`cat`](http://tldp.org/LDP/abs/html/basic
 
 ## License
 
-Copyright (c) 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
 
