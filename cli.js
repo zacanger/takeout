@@ -1,7 +1,10 @@
+#!/usr/bin/env node
+
 /*!
  * takeout | MIT (c) Shinnosuke Watanabe
  * https://github.com/shinnn/takeout
 */
+
 'use strict';
 
 var argv = require('minimist')(process.argv.slice(2), {
@@ -82,3 +85,4 @@ if (argv.version) {
     }
   });
 }
+

@@ -2,6 +2,7 @@
  * takeout | MIT (c) Shinnosuke Watanabe
  * https://github.com/shinnn/takeout
 */
+
 'use strict';
 
 var got = require('got');
@@ -44,3 +45,4 @@ module.exports = function takeout(loc, options, cb) {
     cb(null, buf);
   });
 };
+
