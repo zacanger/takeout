@@ -45,4 +45,3 @@ module.exports = function takeout(loc, options, cb) {
     cb(null, buf);
   });
 };
-
